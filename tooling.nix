@@ -1,7 +1,7 @@
 { lib, fetchFromGitHub, rustPlatform, pkg-config, fontconfig, freetype, rust-bin }:
 
 rustPlatform.buildRustPackage rec {
-  pname = "turbo";
+  pname = "turbo-tooling";
   version = "1.6.0";
 
   src = ./.;
