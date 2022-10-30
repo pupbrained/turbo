@@ -19,19 +19,20 @@
         pkgs = import nixpkgs {
           inherit system overlays;
         };
-        turbo = pkgs.callPackage ./turbo.nix {};
-        turbo-tooling = pkgs.callPackage ./tooling.nix {};
       in
       rec {
         packages = flake-utils.lib.flattenTree {
-          inherit turbo turbo-tooling;
+          turbo = final.callPackage ./turbo.nix {};
+          turbo-tooling = final.callPackage ./tooling.nix {};
         };
         defaultPackage = packages.turbo;
         apps.turbo = flake-utils.lib.mkApp { drv = packages.turbo; };
         defaultApp = apps.turbo;
-        overlay = (final: prev: {
-          inherit turbo turbo-tooling;
-        });
       }
-    );
+    ) // {
+      overlay = (final: prev: {
+        turbo = final.callPackage ./turbo.nix {};
+        turbo-tooling = final.callPackage ./tooling.nix {};
+      });
+    };
 }
