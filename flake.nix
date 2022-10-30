@@ -29,7 +29,7 @@
         defaultPackage = packages.turbo;
         apps.turbo = flake-utils.lib.mkApp { drv = packages.turbo; };
         defaultApp = apps.turbo;
-        overlays = (final: prev: {
+        overlay = (final: prev: {
           inherit turbo turbo-tooling;
         });
       }
