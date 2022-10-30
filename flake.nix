@@ -22,8 +22,8 @@
       in
       rec {
         packages = flake-utils.lib.flattenTree {
-          turbo = final.callPackage ./turbo.nix {};
-          turbo-tooling = final.callPackage ./tooling.nix {};
+          turbo = pkgs.callPackage ./turbo.nix {};
+          turbo-tooling = pkgs.callPackage ./tooling.nix {};
         };
         defaultPackage = packages.turbo;
         apps.turbo = flake-utils.lib.mkApp { drv = packages.turbo; };
