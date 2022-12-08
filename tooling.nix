@@ -2,7 +2,6 @@
   lib,
   fetchFromGitHub,
   rustPlatform,
-  pkg-config,
   fontconfig,
   freetype,
   pkgs,
@@ -13,9 +12,9 @@ rustPlatform.buildRustPackage rec {
 
   src = ./.;
   cargoSha256 = "n2zr8437yYU613/PBkEzg6MBuEAzghPi+lzLTTYbGho=";
-  nativeBuildInputs = [
+  nativeBuildInputs = with pkgs; [
     pkg-config
-    pkgs.rust-bin.nightly.latest.default
+    rust-bin.nightly.latest.default
   ];
 
   preConfigure = ''
