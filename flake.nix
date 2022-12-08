@@ -37,7 +37,7 @@
             cargoSha256 = "n2zr8437yYU613/PBkEzg6MBuEAzghPi+lzLTTYbGho=";
             nativeBuildInputs = [
               pkgs.pkg-config
-              (fenix.complete.withComponents [
+              (fenix.minimal.withComponents [
                 "cargo"
                 "clippy"
                 "rust-src"
