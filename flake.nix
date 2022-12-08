@@ -6,23 +6,22 @@
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
+    fenix = {
+      url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
     };
   };
   outputs = {
     self,
     nixpkgs,
     flake-utils,
-    rust-overlay,
+    fenix,
   }:
     flake-utils.lib.eachDefaultSystem
     (
       system: let
         overlays = [
-          rust-overlay.overlays.default
+          fenix.overlays.default
         ];
         pkgs = import nixpkgs {
           inherit system overlays;

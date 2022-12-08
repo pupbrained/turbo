@@ -5,6 +5,7 @@
   fontconfig,
   freetype,
   pkgs,
+  fenix,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "turbo-tooling";
@@ -14,7 +15,13 @@ rustPlatform.buildRustPackage rec {
   cargoSha256 = "n2zr8437yYU613/PBkEzg6MBuEAzghPi+lzLTTYbGho=";
   nativeBuildInputs = with pkgs; [
     pkg-config
-    rust-bin.nightly.latest.default
+    (fenix.complete.withComponents [
+      "cargo"
+      "clippy"
+      "rust-src"
+      "rustc"
+      "rustfmt"
+    ])
   ];
 
   preConfigure = ''
