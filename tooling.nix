@@ -5,6 +5,7 @@
   fontconfig,
   freetype,
   pkgs,
+  pkg-config,
   fenix,
 }:
 rustPlatform.buildRustPackage rec {
@@ -13,7 +14,7 @@ rustPlatform.buildRustPackage rec {
 
   src = ./.;
   cargoSha256 = "n2zr8437yYU613/PBkEzg6MBuEAzghPi+lzLTTYbGho=";
-  nativeBuildInputs = with pkgs; [
+  nativeBuildInputs = [
     pkg-config
     (fenix.complete.withComponents [
       "cargo"
