@@ -27,6 +27,7 @@
           inherit system overlays;
         };
       in rec {
+        defaultPackage.x86_64-linux = fenix.packages.x86_64-linux.minimal.toolchain;
         packages = flake-utils.lib.flattenTree {
           turbo = pkgs.callPackage ./turbo.nix {};
           turbo-tooling = pkgs.rustPlatform.buildRustPackage rec {
